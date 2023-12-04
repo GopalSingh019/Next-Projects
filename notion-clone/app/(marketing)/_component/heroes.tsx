@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import React from 'react'
 
 function heroes() {
     return (
@@ -16,4 +15,4 @@ function heroes() {
     )
 }
 
-export default heroes
+export default heroes;
