@@ -2,26 +2,36 @@
 import { Button } from '@/components/ui/button'
 import Logo from './logo'
 import { ModeToggle } from './modeTogle'
-import {useScrollTop} from '@/hooks/use-scroll'
+import { useScrollTop } from '@/hooks/use-scroll'
 import { cn } from '@/lib/utils'
-import { SignInButton } from "@clerk/clerk-react";
+import { SignInButton, UserButton } from "@clerk/clerk-react";
 import { useConvexAuth } from "convex/react";
+import Link from 'next/link'
+import { Loader2 } from 'lucide-react'
 
 function navbar() {
-    const scrolled=useScrollTop();
-    const { isLoading, isAuthenticated } = useConvexAuth();
+  const scrolled = useScrollTop();
+  const { isLoading, isAuthenticated } = useConvexAuth();
   return (
-    <div className={cn('z-50 bg-background dark:bg-[#1f1f1f] p-6 fixed top-0 w-full',scrolled && 'border-b shadow-sm')}>
-        <div className='flex justify-between'>
+    <div className={cn('z-50 bg-background dark:bg-[#1f1f1f] p-6 fixed top-0 w-full', scrolled && 'border-b shadow-sm')}>
+      <div className='flex justify-between'>
         <Logo></Logo>
         <div className='flex gap-2'>
-        {!isAuthenticated && <SignInButton mode="modal">
+          {isLoading && <Button disabled>
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            
+          </Button>
+          }
+          {!isAuthenticated && !isLoading && <SignInButton mode="modal">
             <Button variant="ghost">Log in</Button>
-        </SignInButton>}
-            <Button >Get Jotion Free</Button>
-            <ModeToggle></ModeToggle>
+          </SignInButton>}
+          {isAuthenticated && !isLoading && <>
+            <Button ><Link href="/documents">Enter Jotion</Link></Button>
+            <UserButton afterSignOutUrl='/' />
+          </>}
+          <ModeToggle></ModeToggle>
         </div>
-        </div>
+      </div>
     </div>
   )
 }
