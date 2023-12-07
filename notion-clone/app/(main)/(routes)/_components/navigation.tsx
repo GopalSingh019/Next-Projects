@@ -1,4 +1,5 @@
 import { ElementRef, useRef, useState } from "react";
+import UserItem from '../_components/userItem'
 import {
   ChevronsLeft,
   MenuIcon,
@@ -44,11 +45,16 @@ function navigation() {
   }
   return (
     <>
-      <aside ref={sidebar} className="group/sidebar overflow-y-auto flex flex-col w-[240px] h-full bg-slate-300 group/sidebar relative transition-all delay-200 ease-in-out">
+      <aside ref={sidebar} className="group/sidebar overflow-y-auto flex flex-col w-[240px] h-full bg-slate-100 group/sidebar relative transition-all delay-200 ease-in-out">
         <div onClick={handleChevronClick} className="top-3 right-2 absolute group-hover/sidebar:bg-slate-400 group-hover/sidebar:text-slate-900 text-slate-500 cursor-pointer">
           <ChevronsLeft />
         </div>
-        <div>Action items</div>
+
+        <div className="p-2">
+          <UserItem/>
+        </div>
+
+
         <div>Documents</div>
         <div onMouseDown={onHandleMouseUp} onClick={onHandleClick} className="opacity-50 absolute right-0 top-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize  h-full w-1 bg-slate-600 " />
       </aside>
