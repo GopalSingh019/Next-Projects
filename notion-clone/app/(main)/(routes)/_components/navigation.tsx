@@ -9,11 +9,15 @@ import {
   Settings,
   Trash
 } from "lucide-react";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 function navigation() {
   const sidebar = useRef<ElementRef<"aside">>(null);
   const [isOpen, setIsOpen] = useState(false);
 
+  const documents=useQuery(api.documents.get);
+  console.log(documents);
   const handleMouseMove = (event: MouseEvent) => {
     if (event.clientX > 250 && event.clientX < 420)
       sidebar.current.style.width = `${event.clientX}px`;
@@ -55,7 +59,9 @@ function navigation() {
         </div>
 
 
-        <div>Documents</div>
+        <div className="p-2">{documents?.map((item)=>{
+          return (<p>{item.title}</p>)
+        })}</div>
         <div onMouseDown={onHandleMouseUp} onClick={onHandleClick} className="opacity-50 absolute right-0 top-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize  h-full w-1 bg-slate-600 " />
       </aside>
       {isOpen && <nav className="p-2 ">

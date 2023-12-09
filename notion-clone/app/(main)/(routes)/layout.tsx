@@ -5,6 +5,7 @@ import Navigation from './_components/navigation'
 import { redirect } from 'next/navigation';
 import ClipLoader from "react-spinners/ClipLoader";
 import { CSSProperties } from "react";
+import { Toaster } from "@/components/ui/toaster";
 
 const override: CSSProperties = {
   display: "block",
@@ -12,15 +13,15 @@ const override: CSSProperties = {
   borderColor: "skyblue",
 };
 
-function layout({children}:{children:React.ReactNode}) {
-    const { isLoading, isAuthenticated } = useConvexAuth();
+function layout({ children }: { children: React.ReactNode }) {
+  const { isLoading, isAuthenticated } = useConvexAuth();
   if (!isAuthenticated && !isLoading) {
     redirect('/');
     return;
   }
   return (
     <body>
-        {!isLoading && (<main className='flex h-full w-full flex-row'>
+      {!isLoading && (<main className='flex h-full w-full flex-row'>
         <Navigation></Navigation>
         {children}
       </main>)}
@@ -32,6 +33,7 @@ function layout({children}:{children:React.ReactNode}) {
         aria-label="Loading Spinner"
         data-testid="loader"
       /></main>}
+      <Toaster />
     </body>
   )
 }
