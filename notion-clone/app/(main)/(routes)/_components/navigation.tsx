@@ -1,5 +1,6 @@
 import { ElementRef, useRef, useState } from "react";
 import UserItem from '../_components/userItem'
+import Item from '../_components/item'
 import {
   ChevronsLeft,
   MenuIcon,
@@ -60,7 +61,7 @@ function navigation() {
 
 
         <div className="p-2">{documents?.map((item)=>{
-          return (<p>{item.title}</p>)
+          return (<Item item={item}></Item>)
         })}</div>
         <div onMouseDown={onHandleMouseUp} onClick={onHandleClick} className="opacity-50 absolute right-0 top-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize  h-full w-1 bg-slate-600 " />
       </aside>
