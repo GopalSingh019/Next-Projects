@@ -2,7 +2,9 @@ import { mutation, query } from "./_generated/server";
 import { v } from "convex/values";
 
 export const get =query({
-    args:{parentDocument:v.optional(v.id('documents') )},
+    args:{parentDocument:v.optional(v.id('documents') ),
+          isArchived:v.optional(v.boolean())
+},
     handler:async(ctx,args)=>{
         const identity = await ctx.auth.getUserIdentity();
 
@@ -10,8 +12,10 @@ export const get =query({
             throw new Error('Not Authenticated');
         }
         const userId = identity?.subject;
-
-        const docs=await ctx.db.query('documents').filter((q) => q.and(q.eq(q.field("userId"), userId),q.eq(q.field("parentDocument"), args.parentDocument))).collect();
+        if(!args.isArchived)
+        var docs=await ctx.db.query('documents').filter((q) => q.and(q.eq(q.field("userId"), userId),q.eq(q.field("parentDocument"), args.parentDocument))).collect();
+        else
+        var docs=await ctx.db.query('documents').filter((q) => q.and(q.eq(q.field("userId"), userId),q.eq(q.field("isArchived"), args.isArchived))).collect();
         return docs;
     }
 })
@@ -47,3 +51,18 @@ export const createTask = mutation({
         return document;
     },
 });
+
+export const updateTask = mutation({
+    args: { id: v.id("documents"),isArchived:v.optional(v.boolean()) },
+    handler: async (ctx, args) => {
+
+        const identity = await ctx.auth.getUserIdentity();
+
+        if (!identity) {
+            throw new Error('Not Authenticated');
+        }
+        const userId = identity?.subject;
+      await ctx.db.patch(args.id, { isArchived: args.isArchived } );
+
+      },
+  });

@@ -22,7 +22,7 @@ function navigation() {
   const [isOpen, setIsOpen] = useState(false);
 
   const documents = useQuery(api.documents.get);
-  console.log(documents);
+  // console.log(documents);
   const handleMouseMove = (event: MouseEvent) => {
     if (event.clientX > 250 && event.clientX < 420)
       sidebar.current.style.width = `${event.clientX}px`;
@@ -55,7 +55,7 @@ function navigation() {
   return (
     <>
       <aside ref={sidebar} className="group/sidebar overflow-y-auto flex flex-col w-[240px] h-full bg-slate-100 group/sidebar relative transition-all delay-200 ease-in-out">
-        <div onClick={handleChevronClick} className="top-3 right-2 absolute group-hover/sidebar:bg-slate-400 group-hover/sidebar:text-slate-900 text-slate-500 cursor-pointer">
+        <div onClick={handleChevronClick} className="top-3 right-2 absolute group-hover/sidebar:bg-slate-300 group-hover/sidebar:text-slate-900 text-slate-500 cursor-pointer">
           <ChevronsLeft />
         </div>
   
@@ -78,14 +78,16 @@ function navigation() {
           return (<Item item={item}></Item>)
         })}</div>
 
-        <div className="mt-4 pl-4 flex hover:bg-slate-200 text-muted-foreground items-center gap-2">
+        <div className="mt-4 pl-4 flex  text-muted-foreground items-center gap-2">
           <Trash className=" h-4 w-4"/>
         <TrashDoc/>
         </div>
-        <div onMouseDown={onHandleMouseUp} onClick={onHandleClick} className="opacity-50 absolute right-0 top-0 group-hover/sidebar:opacity-100 transition cursor-ew-resize  h-full w-1 bg-slate-600 " />
+        <div onMouseDown={onHandleMouseUp} onClick={onHandleClick} className="absolute right-0 top-0 group-hover/sidebar:block bg-slate-400 hidden    h-full w-1 " >
+          <div className="cursor-ew-resize h-full w-full"></div>
+          </div>
       </aside>
       {isOpen && <nav className="p-2 ">
-        <MenuIcon className=" hover:bg-slate-400" onClick={onClickMenu}></MenuIcon>
+        <MenuIcon className=" hover:bg-slate-300" onClick={onClickMenu}></MenuIcon>
       </nav>
       }
     </>

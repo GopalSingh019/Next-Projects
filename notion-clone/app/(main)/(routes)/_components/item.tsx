@@ -1,8 +1,8 @@
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger, } from "@/components/ui/dropdown-menu"
+
 import { useToast } from "@/components/ui/use-toast";
 import { api } from "@/convex/_generated/api";
 import { useMutation, useQuery } from "convex/react";
-import { ChevronDown, ChevronLeft, ChevronRight, PanelTop, Plus, Trash } from "lucide-react";
+import { ChevronDown, ChevronRight, PanelTop, Plus, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 import { useState } from "react";
@@ -12,15 +12,16 @@ import { useState } from "react";
 interface docItem {
     _id: string,
     title: string,
-    parentDocument:string
+    parentDocument: string,
+    isArchived: boolean
 }
 
 function Item({ item }: { item: docItem }) {
     const create = useMutation(api.documents.createTask);
-    const deleteDoc= useMutation(api.documents.deleteTask);
-    const [expand,setExpand]=useState(false);
+    const updateTask = useMutation(api.documents.updateTask);
+    const [expand, setExpand] = useState(false);
     const router = useRouter()
-    const documents=useQuery(api.documents.get,{parentDocument: item._id});
+    const documents = useQuery(api.documents.get, { parentDocument: item._id });
 
     const { toast } = useToast();
     const onCreateItem = async () => {
@@ -36,37 +37,39 @@ function Item({ item }: { item: docItem }) {
         }
     }
 
-    const onDeleteDoc=()=>{
-        deleteDoc({id:item._id});
+    const onDeleteDoc = () => {
+        updateTask({ id: item._id ,isArchived:!item.isArchived});
         toast({
-            title: `${item.title} deleted`,
+            title: `${item.title} moved to trash`,
         })
         router.replace('/documents');
     }
-    const onGetChild=()=>{
+    const onGetChild = () => {
         setExpand(!expand);
     }
-    const onDocSltd=()=>{
+    const onDocSltd = () => {
         router.push(`/documents/${item._id}`)
     }
     return (
         <>
-        <div className="pl-2 pr-2 text-muted-foreground rounded-sm w-[full] font-normal hover:bg-slate-200">
-        
-            <div onClick={onGetChild} className="group flex gap-2 text-start w-full cursor-pointer items-center ">
-            
-                <p onClick={onDocSltd} className="flex-1 flex gap-1 items-center">
-                {!expand && <ChevronRight className="h-4 w-4"></ChevronRight>}
-                {expand && <ChevronDown className="h-4 w-4"></ChevronDown>}
-                <PanelTop className="w-4 h-4"/>{item?.title}</p>
-                {<Trash onClick={onDeleteDoc} className="hidden group-hover:block h-4 w-4"></Trash>}
-                <Plus onClick={onCreateItem} className="h-4 w-4"></Plus>
-                
-                
+            {!item.isArchived && <div className="pl-2 pr-2 text-muted-foreground rounded-sm w-[full] font-normal hover:bg-slate-200">
+
+                <div onClick={onGetChild} className="group flex gap-2 text-start w-full cursor-pointer items-center ">
+
+                    <p onClick={onDocSltd} className="flex-1 flex gap-1 items-center">
+                        {!expand && <ChevronRight className="h-4 w-4"></ChevronRight>}
+                        {expand && <ChevronDown className="h-4 w-4"></ChevronDown>}
+                        <PanelTop className="w-4 h-4" />{item?.title}</p>
+                    {<Trash onClick={onDeleteDoc} className="hidden group-hover:block h-4 w-4"></Trash>}
+                    <Plus onClick={onCreateItem} className="h-4 w-4"></Plus>
+
+
+                </div>
             </div>
-        </div>
-        {expand && documents && documents.map(item=><div className="pl-5"><Item item={item}></Item></div>)}
-        {expand && documents?.length===0 && <p className="text-muted-foreground pl-7 text-xs">No pages inside</p>}
+            }
+            {expand && documents && documents.map(item => <div className="pl-5"><Item item={item}></Item></div>)}
+            {item.isArchived && documents && documents.map(item => <div className="pl-5"><Item item={item}></Item></div>)}
+            {expand && documents?.length === 0 && <p className="text-muted-foreground pl-7 text-xs">No pages inside</p>}
         </>
     )
 }
