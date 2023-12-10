@@ -2,7 +2,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { useToast } from "@/components/ui/use-toast";
 import { api } from "@/convex/_generated/api";
 import { useMutation, useQuery } from "convex/react";
-import { ChevronDown, PanelTop, Plus, Trash } from "lucide-react";
+import { ChevronDown, ChevronLeft, ChevronRight, PanelTop, Plus, Trash } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 import { useState } from "react";
 
@@ -18,6 +19,7 @@ function Item({ item }: { item: docItem }) {
     const create = useMutation(api.documents.createTask);
     const deleteDoc= useMutation(api.documents.deleteTask);
     const [expand,setExpand]=useState(false);
+    const router = useRouter()
     const documents=useQuery(api.documents.get,{parentDocument: item._id});
 
     const { toast } = useToast();
@@ -39,31 +41,32 @@ function Item({ item }: { item: docItem }) {
         toast({
             title: `${item.title} deleted`,
         })
-        // router.replace('/documents');
+        router.replace('/documents');
     }
     const onGetChild=()=>{
         setExpand(!expand);
     }
+    const onDocSltd=()=>{
+        router.push(`/documents/${item._id}`)
+    }
     return (
         <>
-        <div className="pl-2 pr-2 text-muted-foreground rounded-sm w-[180px] font-normal hover:bg-slate-200">
-            <div className=" flex gap-2 text-start w-full cursor-pointer items-center ">
-                <p className="flex-1 flex gap-1 items-center"><PanelTop className="w-4 h-4"/>{item?.title}</p>
+        <div className="pl-2 pr-2 text-muted-foreground rounded-sm w-[full] font-normal hover:bg-slate-200">
+        
+            <div onClick={onGetChild} className="group flex gap-2 text-start w-full cursor-pointer items-center ">
+            
+                <p onClick={onDocSltd} className="flex-1 flex gap-1 items-center">
+                {!expand && <ChevronRight className="h-4 w-4"></ChevronRight>}
+                {expand && <ChevronDown className="h-4 w-4"></ChevronDown>}
+                <PanelTop className="w-4 h-4"/>{item?.title}</p>
+                {<Trash onClick={onDeleteDoc} className="hidden group-hover:block h-4 w-4"></Trash>}
                 <Plus onClick={onCreateItem} className="h-4 w-4"></Plus>
-                {documents?.length==0 && <Trash onClick={onDeleteDoc} className="h-4 w-4"></Trash>}
-                <ChevronDown onClick={onGetChild} className="h-4 w-4"></ChevronDown>
+                
+                
             </div>
-            {/* {expand && documents && documents.map(item=><Item item={item}></Item>)} */}
-            {/* <DropdownMenu>
-                <DropdownMenuTrigger asChild className="">
-
-                </DropdownMenuTrigger>
-                <DropdownMenuContent >
-                    <DropdownMenuItem></DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu> */}
         </div>
         {expand && documents && documents.map(item=><div className="pl-5"><Item item={item}></Item></div>)}
+        {expand && documents?.length===0 && <p className="text-muted-foreground pl-7 text-xs">No pages inside</p>}
         </>
     )
 }
