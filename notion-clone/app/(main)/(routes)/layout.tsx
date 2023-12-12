@@ -6,6 +6,7 @@ import { redirect } from 'next/navigation';
 import ClipLoader from "react-spinners/ClipLoader";
 import { CSSProperties } from "react";
 import { Toaster } from "@/components/ui/toaster";
+import Loader from './_components/loader'
 
 const override: CSSProperties = {
   display: "block",
@@ -25,14 +26,15 @@ function layout({ children }: { children: React.ReactNode }) {
         <Navigation ></Navigation>
         {children}
       </main>)}
-      {isLoading && <main className="flex justify-center items-center h-full w-full"><ClipLoader
+      {/* {isLoading && <main className="flex justify-center items-center h-full w-full"><ClipLoader
         color='#ffffff'
         loading={true}
         cssOverride={override}
         size={150}
         aria-label="Loading Spinner"
         data-testid="loader"
-      /></main>}
+      /></main>} */}
+      {isLoading && <Loader/>}
       <Toaster />
     </body>
   )

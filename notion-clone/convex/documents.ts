@@ -56,13 +56,36 @@ export const updateTask = mutation({
     args: { id: v.id("documents"),isArchived:v.optional(v.boolean()) },
     handler: async (ctx, args) => {
 
+      await ctx.db.patch(args.id, { isArchived: args.isArchived } );
+
+      },
+  });
+
+  export const DeleteTask = mutation({
+    args: { id: v.id("documents"),parentDoc:v.optional(v.id('documents')) },
+    handler: async (ctx, args) => {
+
+       const result=await ctx.db.query('documents').filter((q)=>q.eq(q.field("parentDocument"), args.id)).collect();
+
+       for (const item of result){
+        await ctx.db.patch(item._id,{parentDocument:args.parentDoc})
+       }
+      await ctx.db.delete(args.id);
+
+      },
+  });
+
+  export const SearchTask = query({
+    args: { title: v.string() },
+    handler: async (ctx, args) => {
+
         const identity = await ctx.auth.getUserIdentity();
 
         if (!identity) {
             throw new Error('Not Authenticated');
         }
-        const userId = identity?.subject;
-      await ctx.db.patch(args.id, { isArchived: args.isArchived } );
-
+       const userId = identity?.subject;
+       const result=await ctx.db.query('documents').filter((q) => q.and(q.eq(q.field("userId"), userId),q.eq(q.field("title"), args.title))).collect();
+       return result;
       },
   });
