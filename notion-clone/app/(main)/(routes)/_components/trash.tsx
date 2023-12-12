@@ -8,11 +8,13 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input"
 import { api } from "@/convex/_generated/api";
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { Undo, Trash, Search } from "lucide-react";
 
 function TrashDoc() {
     const documents = useQuery(api.documents.get, { isArchived: true });
+    const updateDoc=useMutation(api.documents.updateTask)
+    
     return (
         <div>
             <Dialog>
@@ -26,7 +28,7 @@ function TrashDoc() {
                             {documents?.length > 0 && documents?.map(item => <div className="mt-6 flex flex-row w-full justify-between text-muted-foreground hover:">
                                 <p>{item.title}</p>
                                 <div className="flex gap-5 items-center">
-                                    <Undo></Undo>
+                                    <Undo onClick={()=>{updateDoc({id:item._id,isArchived:false})}}></Undo>
                                     <Trash />
                                 </div>
                             </div>

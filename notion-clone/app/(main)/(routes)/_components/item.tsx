@@ -52,7 +52,7 @@ function Item({ item }: { item: docItem }) {
     }
     return (
         <>
-            {!item.isArchived && <div className="pl-2 pr-2 text-muted-foreground rounded-sm w-[full] font-normal hover:bg-slate-200">
+            {!item.isArchived && <div className="pl-2 pr-2 text-muted-foreground rounded-sm overflow-hidden min-w-[180px] w-[full] font-normal dark:hover:bg-slate-800 hover:bg-slate-200">
 
                 <div onClick={onGetChild} className="group flex gap-2 text-start w-full cursor-pointer items-center ">
 
@@ -68,8 +68,8 @@ function Item({ item }: { item: docItem }) {
             </div>
             }
             {expand && documents && documents.map(item => <div className="pl-5"><Item item={item}></Item></div>)}
-            {item.isArchived && documents && documents.map(item => <div className="pl-5"><Item item={item}></Item></div>)}
-            {expand && documents?.length === 0 && <p className="text-muted-foreground pl-7 text-xs">No pages inside</p>}
+            {item.isArchived && documents && documents.map(item => <div className=""><Item item={item}></Item></div>)}
+            {expand && !item.isArchived &&  documents?.length === 0 && <p className="text-muted-foreground pl-7 text-xs">No pages inside</p>}
         </>
     )
 }
