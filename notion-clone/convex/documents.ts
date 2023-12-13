@@ -89,3 +89,19 @@ export const updateTask = mutation({
        return result;
       },
   });
+
+  export const getById =query({
+    args:{id:v.optional(v.id('documents') )
+},
+    handler:async(ctx,args)=>{
+        const identity = await ctx.auth.getUserIdentity();
+
+        if (!identity) {
+            throw new Error('Not Authenticated');
+        }
+        const userId = identity?.subject;
+        
+        var docs=await ctx.db.query('documents').filter((q) => q.and(q.eq(q.field("userId"), userId),q.eq(q.field("_id"), args.id))).collect();
+        return docs[0];
+    }
+})

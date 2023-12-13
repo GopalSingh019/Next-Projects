@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "convex/react";
 import { ChevronDown, ChevronRight, PanelTop, Plus, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 
@@ -26,7 +26,7 @@ function Item({ item }: { item: docItem }) {
     const { toast } = useToast();
     const onCreateItem = async () => {
         try {
-            const promise = await create({ title: 'untitled', parentDocument: item._id });
+            await create({ title: 'untitled', parentDocument: item._id });
             toast({
                 title: `New Note Created`,
             })

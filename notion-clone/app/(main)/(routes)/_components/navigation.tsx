@@ -1,4 +1,4 @@
-import { ElementRef, useRef, useState } from "react";
+import { ElementRef, useEffect, useRef, useState } from "react";
 import UserItem from '../_components/userItem'
 import Item from '../_components/item'
 import {
@@ -23,6 +23,14 @@ function navigation() {
 
   const documents = useQuery(api.documents.get);
   // console.log(documents);
+
+  useEffect(()=>{
+    if(screen.width<700){
+      sidebar.current.style.width= "0%"
+      setIsOpen(true);
+    }
+},[screen.width])
+
   const handleMouseMove = (event: MouseEvent) => {
     if (event.clientX > 250 && event.clientX < 420)
       sidebar.current.style.width = `${event.clientX}px`;
@@ -51,10 +59,13 @@ function navigation() {
   const onClickMenu = () => {
     setIsOpen(false);
     sidebar.current.style.width = '240px';
+    if(screen.width<700){
+      sidebar.current.style.width= "100%"
+    }
   }
   return (
     <>
-      <aside ref={sidebar} className="group/sidebar dark:bg-[#1f1f1f] overflow-y-auto flex flex-col w-[240px] h-full bg-slate-100 group/sidebar relative transition-all delay-200 ease-in-out">
+      <aside ref={sidebar} className="group/sidebar dark:bg-[#1f1f1f] overflow-y-auto flex flex-col  h-full bg-slate-100 group/sidebar relative transition-all delay-200 ease-in-out">
         <div onClick={handleChevronClick} className="top-3 right-2 absolute group-hover/sidebar:bg-slate-300 group-hover/sidebar:text-slate-900 dark:group-hover/sidebar:text-slate-50 text-slate-500 dark:text-slate-50 dark:group-hover/sidebar:bg-slate-600 cursor-pointer">
           <ChevronsLeft />
         </div>

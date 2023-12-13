@@ -25,7 +25,7 @@ function documentPage() {
 
   console.log(screenY);
   return (
-    <div className="h-full w-full overflow-y-auto flex justify-center items-center flex-col gap-2 font-bold">
+    <div className="h-full w-full overflow-y-auto flex justify-center items-center flex-col gap-2 font-bold text-center">
       <h2>Welcome To {user?.firstName}'s Notion</h2>
       <Button onClick={createDoc}><PlusCircle className="h-[25] w-[25] pr-2 "/> Create Notion </Button>
     </div>
