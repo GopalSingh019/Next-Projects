@@ -53,10 +53,13 @@ export const createTask = mutation({
 });
 
 export const updateTask = mutation({
-    args: { id: v.id("documents"),isArchived:v.optional(v.boolean()) },
+    args: { id: v.id("documents"),isArchived:v.optional(v.boolean()),content:v.optional(v.string()),
+    coverImage:v.optional(v.string()),
+    icon:v.optional(v.string()),
+    title:v.optional(v.string()) },
     handler: async (ctx, args) => {
-
-      await ctx.db.patch(args.id, { isArchived: args.isArchived } );
+        const {id,...rest}=args;
+      await ctx.db.patch(args.id, { ...rest } );
 
       },
   });

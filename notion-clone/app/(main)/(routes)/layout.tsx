@@ -7,6 +7,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { CSSProperties } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import Loader from './_components/loader'
+import { EdgeStoreProvider } from '../../../edgeStore/edgestore';
 
 const override: CSSProperties = {
   display: "block",
@@ -25,7 +26,7 @@ function layout({ children }: { children: React.ReactNode }) {
       {!isLoading && (<main className='flex h-full w-full flex-row'>
         <Navigation ></Navigation>
         <section className="flex-1 h-full overflow-y-auto">
-        {children}
+        <EdgeStoreProvider>{children}</EdgeStoreProvider>
         </section>
       </main>)}
       {/* {isLoading && <main className="flex justify-center items-center h-full w-full"><ClipLoader
