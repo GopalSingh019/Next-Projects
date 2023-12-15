@@ -13,17 +13,18 @@ interface data{
 function title({initialData}:data) {
     const inputRef=useRef(null);
     const [isChanging, setIsChanging] = useState(false)
+    const [title, setTitle] = useState()
     const updateDoc=useMutation(api.documents.updateTask);
+    
     return (
         <div className="p-2  flex items-center">
             <p className="text-3xl">{initialData?.icon}</p>
             {isChanging && <Input
             ref={inputRef}
-            onBlur={()=>setIsChanging(false)}
-            onChange={(e)=>{
-                updateDoc({id:initialData._id,title:e.target.value()
-            }}
-            value={initialData?.title}
+            onBlur={()=>{setIsChanging(false);if(inputRef.current.value)updateDoc({id:initialData._id,title:inputRef.current.value
+            })}}
+            onChange={()=>{setTitle(inputRef.current.value)}}
+            placeholder={initialData?.title}
             className="focus-visible:ring-transparent"
             />}
             {!isChanging && <Button 
