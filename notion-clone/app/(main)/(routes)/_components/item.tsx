@@ -13,7 +13,8 @@ interface docItem {
     _id: string,
     title: string,
     parentDocument: string,
-    isArchived: boolean
+    isArchived: boolean,
+    icon:string
 }
 
 function Item({ item }: { item: docItem }) {
@@ -59,7 +60,7 @@ function Item({ item }: { item: docItem }) {
                     <p onClick={onDocSltd} className="flex-1 flex gap-1 items-center">
                         {!expand && <ChevronRight className="h-4 w-4"></ChevronRight>}
                         {expand && <ChevronDown className="h-4 w-4"></ChevronDown>}
-                        <PanelTop className="w-4 h-4" />{item?.title}</p>
+                        <PanelTop className="w-4 h-4" />{item?.icon} {item?.title}</p>
                     {<Trash onClick={onDeleteDoc} className="hidden group-hover:block h-4 w-4"></Trash>}
                     <Plus onClick={onCreateItem} className="h-4 w-4"></Plus>
 
