@@ -28,7 +28,7 @@ function blockNote({ initialData,onChange }: { onChange: (value: string) => void
 
         initialContent:
         initialData?.content
-                ? JSON.parse(initialData.content) as PartialBlock[] 
+                ? JSON.parse(initialData.content)
                 : undefined,
 
         onEditorContentChange: (editor) => {
