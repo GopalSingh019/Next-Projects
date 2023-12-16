@@ -30,11 +30,11 @@ function iconTool({ initialData }: { initialData: data }) {
 
     }
     return (
-        <div className='p-4'>
+        <div className='pr-4 pt-4 pb-4 relative'>
             <Button onClick={()=>setIsChanging(true)} variant='outline' className="text-muted-foreground size-sm text-xs"><Smile className="h-4 w-4 mr-2"/>Add Icon</Button>
             {/* {isChanging && <Input placeholder="#SET ICON"  onBlur={()=>setIsChanging(false)} onFocus={() => { setIsChanging(true) }} value={initialData?.icon} className="p-2 -full relative focus-visible:ring-transparent"></Input>} */}
-            {isChanging && <div className="absolute ">
-                <div className="dark:hidden"><emoji-picker ref={emojiRef} class="light" ></emoji-picker></div>
+            {isChanging && <div className="absolute z-[9999]">
+                <div className="dark:hidden "><emoji-picker ref={emojiRef} class="light" ></emoji-picker></div>
                 <div className="dark:block hidden"><emoji-picker ref={emojiRefdark}  class="dark" ></emoji-picker></div>
             </div>
             }

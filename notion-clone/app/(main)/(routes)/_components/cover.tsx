@@ -31,16 +31,17 @@ function cover({ initialData }: { initialData: data }) {
                 <PopoverTrigger><Button onClick={() => setIsUploading(true)} variant='outline'
                     className="text-muted-foreground text-xs"><ImageIcon className="h-4 w-4 mr-2" />
                     Add cover</Button></PopoverTrigger>
-                <PopoverContent>
-                    <div>
+                <PopoverContent className='text-center'>
+                    {/* <div> */}
                         <Input
                             type="file"
                             onChange={(e) => {
                                 setFile(e.target.files?.[0]);
                             }}
                         />
-                        <Button variant='outline'
+                        <Button className='m-2' variant='outline'
                             onClick={async () => {
+                                
                                 if (file) {
                                     const res = await edgestore.publicFiles.upload({
                                         file,
@@ -52,6 +53,11 @@ function cover({ initialData }: { initialData: data }) {
                                     // you can run some server action or api here
                                     // to add the necessary data to your database
                                     console.log(res);
+                                    if(initialData?.coverImage){
+                                        await edgestore.publicFiles.delete({
+                                            url:initialData?.coverImage
+                                        })
+                                    }
                                     updatedoc({ id: initialData._id, coverImage: res.url })
                                 }
                             }}
@@ -59,7 +65,7 @@ function cover({ initialData }: { initialData: data }) {
                             Upload
                         </Button>
                         {progress > 0 && progress < 100 && <Progress value={progress} />}
-                    </div>
+                    {/* </div> */}
 
 
                 </PopoverContent>

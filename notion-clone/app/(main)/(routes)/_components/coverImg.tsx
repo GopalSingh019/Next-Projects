@@ -29,7 +29,7 @@ function coverImg({initialData}:{initialData:data}) {
             })
         }}
         ><X className='h-4 w-4'/></Button>}
-        {initialData?.coverImage && <img className="block object-cover h-full w-full"     src="/default.jpg"></img>}
+        {!initialData?.coverImage && <img className="block object-cover h-full w-full"     src="/default.jpg"></img>}
     </div>
   )
 }

@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@blocknote/core": "^0.10.1",
+    "@blocknote/react": "^0.10.1",
     "@clerk/clerk-react": "^4.28.1",
     "@edgestore/react": "^0.1.4",
     "@edgestore/server": "^0.1.4",
@@ -31,6 +33,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-spinners": "^0.13.8",
+    "react-textarea-autosize": "^8.5.3",
     "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"
