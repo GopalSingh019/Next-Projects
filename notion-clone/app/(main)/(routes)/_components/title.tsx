@@ -11,7 +11,7 @@ interface data{
     icon:string
 }
 
-function title({initialData}:{initialData:data}) {
+function Title({initialData}:{initialData:data}) {
     const inputRef=useRef(null);
     const [isChanging, setIsChanging] = useState(false)
     const [title, setTitle] = useState()
@@ -37,4 +37,4 @@ function title({initialData}:{initialData:data}) {
     )
 }
 
-export default title
+export default Title

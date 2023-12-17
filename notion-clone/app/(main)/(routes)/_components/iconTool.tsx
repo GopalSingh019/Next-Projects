@@ -23,7 +23,7 @@ interface data {
 interface eventlog{
     detail:{unicode:string}
 }
-function iconTool({ initialData }: { initialData: data }) {
+function IconTool({ initialData }: { initialData: data }) {
     const emojiRef = useRef<any>();
     const emojiRefdark = useRef<any>();
     const doc=useMutation(api.documents.updateTask)
@@ -56,4 +56,4 @@ function iconTool({ initialData }: { initialData: data }) {
     )
 }
 
-export default iconTool
+export default IconTool

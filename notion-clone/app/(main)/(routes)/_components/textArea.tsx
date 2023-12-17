@@ -9,7 +9,7 @@ interface data{
     title:string
 }
 
-function textArea({initialData}:{initialData:data}) {
+function TextArea({initialData}:{initialData:data}) {
   const textRef=useRef(null);
   const updateDoc=useMutation(api.documents.updateTask)
     return (
@@ -19,4 +19,4 @@ function textArea({initialData}:{initialData:data}) {
   )
 }
 
-export default textArea
+export default TextArea

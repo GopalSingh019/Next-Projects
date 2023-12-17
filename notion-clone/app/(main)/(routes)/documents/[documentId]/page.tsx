@@ -13,12 +13,12 @@ import { useMemo } from "react";
 import dynamic from "next/dynamic";
 import { Id } from "@/convex/_generated/dataModel";
 
-function page({ params }: {
+const DocPage=({ params }: {
   params: {
     documentId
     : Id<"documents">
   }
-}) {
+})=> {
 
   const updateDoc = useMutation(api.documents.updateTask);
   const document = useQuery(api.documents.getById, { id: params.documentId })
@@ -54,4 +54,4 @@ function page({ params }: {
   )
 }
 
-export default page;
+export default DocPage;

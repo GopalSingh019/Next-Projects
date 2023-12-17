@@ -8,7 +8,7 @@ interface data {
     _id: Id<"documents">,
     content: string
 }
-function blockNote({ initialData,onChange }: { onChange: (value: string) => void;initialData: data }) {
+function BlockNote({ initialData,onChange }: { onChange: (value: string) => void;initialData: data }) {
     
     const { edgestore } = useEdgeStore();
     
@@ -39,4 +39,4 @@ function blockNote({ initialData,onChange }: { onChange: (value: string) => void
     )
 }
 
-export default blockNote
+export default BlockNote

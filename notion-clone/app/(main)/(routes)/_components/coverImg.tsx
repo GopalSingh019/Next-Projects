@@ -12,7 +12,7 @@ interface data{
     coverImage:string
 }
 
-function coverImg({initialData}:{initialData:data}) {
+function CoverImg({initialData}:{initialData:data}) {
     const { edgestore } = useEdgeStore();
     const doc = useMutation(api.documents.updateTask)
   return (
@@ -34,4 +34,4 @@ function coverImg({initialData}:{initialData:data}) {
   )
 }
 
-export default coverImg
+export default CoverImg

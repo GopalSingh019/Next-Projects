@@ -18,7 +18,7 @@ interface data{
     _creationTime:number
 
 }
-function menu({initialData}:{initialData:data}) {
+function Menu({initialData}:{initialData:data}) {
     const doc=useMutation(api.documents.updateTask);
     const router=useRouter();
     const {toast}=useToast();
@@ -47,4 +47,4 @@ function menu({initialData}:{initialData:data}) {
     )
 }
 
-export default menu
+export default Menu

@@ -46,7 +46,7 @@ function TrashDoc() {
                         <DialogDescription className="flex justify-between flex-col items-center pt-6">
                             <div className="w-full flex flex-row gap-2 items-center"><Search /><Input onChange={onSearch}></Input></div>
                             {doc?.length === 0 && <p className="mt-6">No notes found</p>}
-                            {doc?.length > 0 && doc?.map(item => <div className="mt-6 flex flex-row w-full justify-between text-muted-foreground hover:">
+                            {doc?.length > 0 && doc?.map(item => <div key={item._id} className="mt-6 flex flex-row w-full justify-between text-muted-foreground hover:">
                                 <p>{item.title}</p>
                                 <div className="flex gap-5 items-center">
                                     <Undo onClick={() => { updateDoc({ id: item._id, isArchived: false }) }}></Undo>

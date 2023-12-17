@@ -1,6 +1,6 @@
 import { ReactNebula} from "@flodlc/nebula";
 
-function loader() {
+function Loader() {
   return (
     <ReactNebula config={{
       "starsCount": 510,
@@ -17,4 +17,4 @@ function loader() {
   )
 }
 
-export default loader
+export default Loader

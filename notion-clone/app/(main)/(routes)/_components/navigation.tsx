@@ -17,7 +17,7 @@ import Setting from "./setting";
 import SearchDoc from './SearchDoc';
 import TrashDoc from './trash';
 
-function navigation() {
+function Navigation() {
   const sidebar = useRef<ElementRef<"aside">>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -86,7 +86,7 @@ function navigation() {
 
         </div>
         <div className="p-2 ">{documents?.map((item) => {
-          return (<Item item={item}></Item>)
+          return (<Item key={item._id} item={item}></Item>)
         })}</div>
 
         <div className="mt-4 pl-4 flex hover:bg-slate-200 dark:hover:bg-slate-800  text-muted-foreground items-center gap-2">
@@ -105,4 +105,4 @@ function navigation() {
   )
 }
 
-export default navigation
+export default Navigation

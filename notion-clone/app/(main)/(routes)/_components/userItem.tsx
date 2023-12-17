@@ -9,7 +9,7 @@ import { ChevronsRightLeftIcon } from "lucide-react";
 import { DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
 
 
-function userItem() {
+function UserItem() {
     const { user } = useUser();
     console.log(user?.emailAddresses);
     return (
@@ -47,4 +47,4 @@ function userItem() {
     )
 }
 
-export default userItem;
+export default UserItem;

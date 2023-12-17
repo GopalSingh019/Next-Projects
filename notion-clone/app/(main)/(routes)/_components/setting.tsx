@@ -16,7 +16,7 @@ import {
 import { Moon, Sun } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-function setting() {
+function Setting() {
     const { setTheme } = useTheme()
     return (
         <div>
@@ -56,4 +56,4 @@ function setting() {
     )
 }
 
-export default setting
+export default Setting

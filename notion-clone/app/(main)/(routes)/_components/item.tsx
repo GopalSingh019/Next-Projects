@@ -68,8 +68,8 @@ function Item({ item }: { item: docItem }) {
                 </div>
             </div>
             }
-            {expand && documents && documents.map(item => <div className="pl-5"><Item item={item}></Item></div>)}
-            {item.isArchived && documents && documents.map(item => <div className=""><Item item={item}></Item></div>)}
+            {expand && documents && documents.map(item => <div key={item._id} className="pl-5"><Item item={item}></Item></div>)}
+            {item.isArchived && documents && documents.map(item => <div key={item._id}><Item item={item}></Item></div>)}
             {expand && !item.isArchived &&  documents?.length === 0 && <p className="text-muted-foreground pl-7 text-xs">No pages inside</p>}
         </>
     )

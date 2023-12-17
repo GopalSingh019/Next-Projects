@@ -20,7 +20,7 @@ interface data {
     coverImage: string
 }
 
-function cover({ initialData }: { initialData: data }) {
+function Cover({ initialData }: { initialData: data }) {
     const [file, setFile] = React.useState<File>();
     const [isUploading, setIsUploading] = React.useState<boolean>(false);
     const [progress, setProgress] = React.useState<number>(0);
@@ -76,4 +76,4 @@ function cover({ initialData }: { initialData: data }) {
     )
 }
 
-export default cover
+export default Cover

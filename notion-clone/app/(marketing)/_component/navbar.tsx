@@ -9,7 +9,7 @@ import { useConvexAuth } from "convex/react";
 import Link from 'next/link'
 import { Loader2 } from 'lucide-react'
 
-function navbar() {
+function Navbar() {
   const scrolled = useScrollTop();
   const { isLoading, isAuthenticated } = useConvexAuth();
   return (
@@ -36,4 +36,4 @@ function navbar() {
   )
 }
 
-export default navbar
+export default Navbar

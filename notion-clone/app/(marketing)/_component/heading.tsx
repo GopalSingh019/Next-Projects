@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react'
 import { useConvexAuth } from "convex/react";
 import Link from 'next/link';
 
-function heading() {
+function Heading() {
     const { isLoading, isAuthenticated } = useConvexAuth();
     return (
         <div className='max-w-3xl space-y-4 pt-40'>
@@ -26,4 +26,4 @@ function heading() {
     )
 }
 
-export default heading
+export default Heading
