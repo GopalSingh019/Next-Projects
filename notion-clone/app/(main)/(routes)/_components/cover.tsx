@@ -16,8 +16,8 @@ import {
 
 
 interface data {
-    _id: Id<"documents">,
-    coverImage: string
+    _id?: Id<"documents">,
+    coverImage?: string
 }
 
 function Cover({ initialData }: { initialData: data }) {
@@ -59,7 +59,8 @@ function Cover({ initialData }: { initialData: data }) {
                                             url:initialData?.coverImage
                                         })
                                     }
-                                    updatedoc({ id: initialData._id, coverImage: res.url })
+                                    if(initialData._id)
+                                    updatedoc({ id: initialData?._id, coverImage: res.url })
                                 }
                             }}
                         >

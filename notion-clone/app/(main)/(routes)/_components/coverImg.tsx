@@ -8,8 +8,8 @@ import { updateTask } from '@/convex/documents';
 import { Id } from "@/convex/_generated/dataModel";
 
 interface data{
-    _id:Id<"documents">,
-    coverImage:string
+    _id?:Id<"documents">,
+    coverImage?:string
 }
 
 function CoverImg({initialData}:{initialData:data}) {
@@ -20,9 +20,11 @@ function CoverImg({initialData}:{initialData:data}) {
         {initialData?.coverImage && <img className="block object-cover h-full w-full"    src={initialData?.coverImage} alt="/default.jpg"></img>}
         {initialData?.coverImage && <Button size='sm' className='absolute top-4 right-4' variant='outline'
         onClick={async()=>{
+          if(initialData?.coverImage)
             await edgestore.publicFiles.delete({
                 url: initialData?.coverImage,
               })
+              if(initialData?._id)
               doc({
                 id:initialData?._id,
                 coverImage:''

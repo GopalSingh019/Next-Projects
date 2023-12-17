@@ -11,10 +11,10 @@ import { useEffect, useState } from "react";
 
 interface docItem {
     _id: Id<"documents">,
-    title: string,
-    parentDocument: string,
-    isArchived: boolean,
-    icon:string
+    title?: string,
+    parentDocument?: Id<"documents">;
+    isArchived?: boolean,
+    icon?:string
 }
 
 function Item({ item }: { item: docItem }) {

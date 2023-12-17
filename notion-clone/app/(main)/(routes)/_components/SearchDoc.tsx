@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 
 function Search() {
     const [search,setSearch]=useState('');
-    const doc=useQuery(api.documents.SearchTask,{title:search});
+    const doc=useQuery(api.documents.SearchTask,{title:search}) || [];
     const router=useRouter();
     
     

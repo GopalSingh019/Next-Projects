@@ -5,8 +5,8 @@ import "@blocknote/core/style.css";
 import { useEdgeStore } from '@/edgeStore/edgestore';
 
 interface data {
-    _id: Id<"documents">,
-    content: string
+    _id?: Id<"documents">,
+    content?: string
 }
 function BlockNote({ initialData,onChange }: { onChange: (value: string) => void;initialData: data }) {
     

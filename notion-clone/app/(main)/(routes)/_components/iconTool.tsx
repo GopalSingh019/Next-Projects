@@ -17,8 +17,8 @@ declare global {
 
 
 interface data {
-    _id: Id<"documents">,
-    icon: string
+    _id?: Id<"documents">,
+    icon?: string
 }
 interface eventlog{
     detail:{unicode:string}
@@ -30,15 +30,19 @@ function IconTool({ initialData }: { initialData: data }) {
     const [isChanging, setIsChanging] = useState(false);
     useEffect(() => {
         emojiRef.current?.addEventListener('emoji-click', (event:eventlog) => {
+            if(initialData._id)
             doc({id:initialData._id,icon:event.detail.unicode})
             console.log(typeof(event));
             console.log(typeof(emojiRef));
             setIsChanging(false);
         })
+        emojiRef.current?.classList.add("light");
         emojiRefdark.current?.addEventListener('emoji-click', (event:eventlog) => {
+            if(initialData._id)
             doc({id:initialData._id,icon:event.detail.unicode})
             setIsChanging(false);
         })
+        emojiRefdark.current?.classList.add("dark");
     }, [isChanging])
     const onChange=()=>{
 
@@ -48,8 +52,8 @@ function IconTool({ initialData }: { initialData: data }) {
             <Button onClick={()=>setIsChanging(true)} variant='outline' className="text-muted-foreground size-sm text-xs"><Smile className="h-4 w-4 mr-2"/>Add Icon</Button>
             {/* {isChanging && <Input placeholder="#SET ICON"  onBlur={()=>setIsChanging(false)} onFocus={() => { setIsChanging(true) }} value={initialData?.icon} className="p-2 -full relative focus-visible:ring-transparent"></Input>} */}
             {isChanging && <div className="absolute z-[9999]">
-                <div className="dark:hidden "><emoji-picker ref={emojiRef} class="light" ></emoji-picker></div>
-                <div className="dark:block hidden"><emoji-picker ref={emojiRefdark}  class="dark" ></emoji-picker></div>
+                <div className="dark:hidden "><emoji-picker ref={emojiRef}  ></emoji-picker></div>
+                <div className="dark:block hidden"><emoji-picker ref={emojiRefdark}   ></emoji-picker></div>
             </div>
             }
         </div>

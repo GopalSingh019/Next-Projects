@@ -26,12 +26,13 @@ const DocPage=({ params }: {
   const BlockNote = useMemo(() => dynamic(() => import("../../_components/blockNote"), { ssr: false }), []);
   const IconTool = useMemo(() => dynamic(() => import("../../_components/iconTool"), { ssr: false }), []);
   const uploadChn = (content: string) => {
-    updateDoc({ id: document?._id, content: content });
+    updateDoc({ id: params.documentId, content: content });
   }
 
   return (
     // <div>{params.documentId}</div>
-    <div>
+    <>
+    {document && <div>
       <nav className=" dark:bg-[#1f1f1f] flex justify-between items-center">
         <Title initialData={document}></Title>
         <Menu initialData={document}></Menu>
@@ -50,7 +51,7 @@ const DocPage=({ params }: {
         <TextArea initialData={document} />
         <BlockNote initialData={document} onChange={uploadChn} />
       </div>
-    </div>
+    </div>}</>
   )
 }
 

@@ -18,10 +18,10 @@ import SearchDoc from './SearchDoc';
 import TrashDoc from './trash';
 
 function Navigation() {
-  const sidebar = useRef<ElementRef<"aside">>(null);
+  const sidebar = useRef<any>(null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const documents = useQuery(api.documents.get);
+  const documents = useQuery(api.documents.get,{});
   // console.log(documents);
 
   useEffect(()=>{
