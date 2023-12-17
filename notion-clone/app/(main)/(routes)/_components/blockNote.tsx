@@ -1,13 +1,7 @@
 import React from 'react'
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
-import {
-    BlockNoteEditor,
-    PartialBlock
-} from "@blocknote/core";
 import { Id } from "@/convex/_generated/dataModel";
 import "@blocknote/core/style.css";
-import { useMutation } from 'convex/react';
-import { api } from '@/convex/_generated/api';
 import { useEdgeStore } from '@/edgeStore/edgestore';
 
 interface data {

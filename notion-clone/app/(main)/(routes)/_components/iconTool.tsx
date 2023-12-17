@@ -5,6 +5,15 @@ import { Id } from "@/convex/_generated/dataModel";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Smile } from "lucide-react";
+import * as React from 'react'
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+        ['emoji-picker']: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+    }
+  }
+}
 
 
 interface data {

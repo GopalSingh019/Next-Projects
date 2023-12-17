@@ -1,29 +1,30 @@
 'use client'
 
-import { useRouter } from "next/navigation";
 import Title from '../../_components/title'
 import Menu from '../../_components/menu'
 import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-import IconTool from '../../_components/iconTool';
+// import IconTool from '../../_components/iconTool';
 import Cover from '../../_components/cover'
 import CoverImg from "../../_components/coverImg";
 import TextArea from "../../_components/textArea";
 // import BlockNote from "../../_components/blockNote";
 import { useMemo } from "react";
 import dynamic from "next/dynamic";
+import { Id } from "@/convex/_generated/dataModel";
 
 function page({ params }: {
   params: {
     documentId
-    : string
+    : Id<"documents">
   }
 }) {
-  const router = useRouter();
+
   const updateDoc = useMutation(api.documents.updateTask);
   const document = useQuery(api.documents.getById, { id: params.documentId })
 
-  const BlockNote = useMemo(() => dynamic(() => import("../../_components/blockNote"), { ssr: false }) ,[]);
+  const BlockNote = useMemo(() => dynamic(() => import("../../_components/blockNote"), { ssr: false }), []);
+  const IconTool = useMemo(() => dynamic(() => import("../../_components/iconTool"), { ssr: false }), []);
   const uploadChn = (content: string) => {
     updateDoc({ id: document?._id, content: content });
   }
