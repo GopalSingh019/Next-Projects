@@ -11,10 +11,10 @@ import { api } from "@/convex/_generated/api"
 import { useMutation } from "convex/react"
 import { MoreHorizontalIcon, Trash } from "lucide-react"
 import { useRouter } from "next/navigation"
-
+import { Id } from "@/convex/_generated/dataModel";
 
 interface data{
-    _id:string,
+    _id:Id<"documents">,
     _creationTime:number
 
 }

@@ -3,14 +3,15 @@ import { Input } from "@/components/ui/input"
 import { api } from "@/convex/_generated/api";
 import { useMutation } from "convex/react";
 import { useRef, useState } from "react"
+import { Id } from "@/convex/_generated/dataModel";
 
 interface data{
     title:string,
-    _id:string,
+    _id:Id<"documents">,
     icon:string
 }
 
-function title({initialData}:data) {
+function title({initialData}:{initialData:data}) {
     const inputRef=useRef(null);
     const [isChanging, setIsChanging] = useState(false)
     const [title, setTitle] = useState()

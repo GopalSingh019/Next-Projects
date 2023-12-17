@@ -19,7 +19,7 @@ import TrashDoc from './trash';
 
 function navigation() {
   const sidebar = useRef<ElementRef<"aside">>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const documents = useQuery(api.documents.get);
   // console.log(documents);

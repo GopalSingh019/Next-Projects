@@ -1,27 +1,32 @@
-import { Input } from "@/components/ui/input";
 import { useEffect, useRef, useState } from "react";
-import 'emoji-picker-element';
+import  'emoji-picker-element';
 import { Button } from "@/components/ui/button";
-
+import { Id } from "@/convex/_generated/dataModel";
 import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { Smile } from "lucide-react";
 
+
 interface data {
-    _id: string,
+    _id: Id<"documents">,
     icon: string
 }
+interface eventlog{
+    detail:{unicode:string}
+}
 function iconTool({ initialData }: { initialData: data }) {
-    const emojiRef = useRef();
-    const emojiRefdark = useRef();
+    const emojiRef = useRef<any>();
+    const emojiRefdark = useRef<any>();
     const doc=useMutation(api.documents.updateTask)
     const [isChanging, setIsChanging] = useState(false);
     useEffect(() => {
-        emojiRef.current?.addEventListener('emoji-click', event => {
+        emojiRef.current?.addEventListener('emoji-click', (event:eventlog) => {
             doc({id:initialData._id,icon:event.detail.unicode})
+            console.log(typeof(event));
+            console.log(typeof(emojiRef));
             setIsChanging(false);
         })
-        emojiRefdark.current?.addEventListener('emoji-click', event => {
+        emojiRefdark.current?.addEventListener('emoji-click', (event:eventlog) => {
             doc({id:initialData._id,icon:event.detail.unicode})
             setIsChanging(false);
         })

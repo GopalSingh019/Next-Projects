@@ -4,13 +4,13 @@ import { api } from "@/convex/_generated/api";
 import { useMutation, useQuery } from "convex/react";
 import { ChevronDown, ChevronRight, PanelTop, Plus, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
-
+import { Id } from "@/convex/_generated/dataModel";
 import { useEffect, useState } from "react";
 
 
 
 interface docItem {
-    _id: string,
+    _id: Id<"documents">,
     title: string,
     parentDocument: string,
     isArchived: boolean,

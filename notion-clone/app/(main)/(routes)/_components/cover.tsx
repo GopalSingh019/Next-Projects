@@ -6,6 +6,7 @@ import { Progress } from '@/components/ui/progress';
 import { Input } from '@/components/ui/input';
 import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
+import { Id } from "@/convex/_generated/dataModel";
 
 import {
     Popover,
@@ -15,7 +16,7 @@ import {
 
 
 interface data {
-    _id: string,
+    _id: Id<"documents">,
     coverImage: string
 }
 

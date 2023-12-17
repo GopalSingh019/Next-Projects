@@ -5,10 +5,10 @@ import { mutation } from '@/convex/_generated/server';
 import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { updateTask } from '@/convex/documents';
-
+import { Id } from "@/convex/_generated/dataModel";
 
 interface data{
-    _id:string,
+    _id:Id<"documents">,
     coverImage:string
 }
 

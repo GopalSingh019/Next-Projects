@@ -4,14 +4,14 @@ import {
     BlockNoteEditor,
     PartialBlock
 } from "@blocknote/core";
-
+import { Id } from "@/convex/_generated/dataModel";
 import "@blocknote/core/style.css";
 import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 import { useEdgeStore } from '@/edgeStore/edgestore';
 
 interface data {
-    _id: string,
+    _id: Id<"documents">,
     content: string
 }
 function blockNote({ initialData,onChange }: { onChange: (value: string) => void;initialData: data }) {

@@ -2,9 +2,10 @@ import { api } from '@/convex/_generated/api';
 import { useMutation } from 'convex/react';
 import { useRef } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
+import { Id } from "@/convex/_generated/dataModel";
 
 interface data{
-    _id:string,
+    _id:Id<"documents">,
     title:string
 }
 
