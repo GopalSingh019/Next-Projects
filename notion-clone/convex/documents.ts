@@ -55,6 +55,7 @@ export const createTask = mutation({
 export const updateTask = mutation({
     args: { id: v.id("documents"),isArchived:v.optional(v.boolean()),content:v.optional(v.string()),
     coverImage:v.optional(v.string()),
+    isPublished:v.optional(v.boolean()),
     icon:v.optional(v.string()),
     title:v.optional(v.string()) },
     handler: async (ctx, args) => {

@@ -4,21 +4,20 @@ import Title from '../../_components/title'
 import Menu from '../../_components/menu'
 import { useMutation, useQuery } from "convex/react";
 import { api } from "@/convex/_generated/api";
-// import IconTool from '../../_components/iconTool';
 import Cover from '../../_components/cover'
 import CoverImg from "../../_components/coverImg";
 import TextArea from "../../_components/textArea";
-// import BlockNote from "../../_components/blockNote";
 import { useMemo } from "react";
 import dynamic from "next/dynamic";
 import { Id } from "@/convex/_generated/dataModel";
+import Publish from '../../_components/publish';
 
-const DocPage=({ params }: {
+const DocPage = ({ params }: {
   params: {
     documentId
     : Id<"documents">
   }
-})=> {
+}) => {
 
   const updateDoc = useMutation(api.documents.updateTask);
   const document = useQuery(api.documents.getById, { id: params.documentId })
@@ -30,28 +29,30 @@ const DocPage=({ params }: {
   }
 
   return (
-    // <div>{params.documentId}</div>
     <>
-    {document && <div>
-      <nav className=" dark:bg-[#1f1f1f] flex justify-between items-center">
-        <Title initialData={document}></Title>
-        <Menu initialData={document}></Menu>
+      {document && <div className='dark:bg-[#1f1f1f]'>
+        <nav className="  flex justify-between items-center">
+          <Title initialData={document}></Title>
+          <div className='flex justify-center gap-1 items-center'>
+            <Publish initialData={document} />
+            <Menu initialData={document}></Menu>
+          </div>
+        </nav>
 
-      </nav>
+        <section className="w-full h-[400px] overflow-hidden">
+          <CoverImg initialData={document}></CoverImg>
+        </section>
 
-      <section className="w-full h-[400px] overflow-hidden">
-        <CoverImg initialData={document}></CoverImg>
-      </section>
-
-      <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
-        <div className="flex w-full items-center ">
-          <IconTool initialData={document}></IconTool>
-          <Cover initialData={document} />
+        <div className="md:max-w-3xl lg:max-w-4xl mx-auto">
+          <div className="flex w-full items-center ">
+            <IconTool initialData={document}></IconTool>
+            <Cover initialData={document} />
+          </div>
+          <TextArea initialData={document} />
+          <BlockNote initialData={document} onChange={uploadChn} />
         </div>
-        <TextArea initialData={document} />
-        <BlockNote initialData={document} onChange={uploadChn} />
-      </div>
-    </div>}</>
+      </div>}
+    </>
   )
 }
 

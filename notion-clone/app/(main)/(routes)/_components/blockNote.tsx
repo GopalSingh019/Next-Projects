@@ -3,6 +3,7 @@ import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import { Id } from "@/convex/_generated/dataModel";
 import "@blocknote/core/style.css";
 import { useEdgeStore } from '@/edgeStore/edgestore';
+import { useTheme } from 'next-themes';
 
 interface data {
     _id?: Id<"documents">,
@@ -11,6 +12,8 @@ interface data {
 function BlockNote({ initialData,onChange }: { onChange: (value: string) => void;initialData: data }) {
     
     const { edgestore } = useEdgeStore();
+
+    const {theme} = useTheme();
     
     const handleUpload=async(file:File)=>{
         const res=await edgestore.publicFiles.upload({
@@ -35,7 +38,7 @@ function BlockNote({ initialData,onChange }: { onChange: (value: string) => void
     });
 
     return (
-        <BlockNoteView editor={editor} theme='light' />
+        <BlockNoteView editor={editor} theme={theme==='dark'?'dark':'light'} />
     )
 }
 
