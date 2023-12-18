@@ -11,7 +11,7 @@ interface data{
     icon?:string
 }
 
-function Title({initialData}:{initialData:data}) {
+function Title({initialData,preview = true}:{initialData:data,preview:boolean}) {
     const inputRef=useRef<any>();
     const [isChanging, setIsChanging] = useState(false)
     const [title, setTitle] = useState()
@@ -30,6 +30,7 @@ function Title({initialData}:{initialData:data}) {
             />}
             {!isChanging && <Button 
             onClick={(e)=>{
+                if(preview)
                 setIsChanging(true);
                 inputRef?.current?.focus()
                 }} variant='ghost'> {initialData?.title}</Button>}

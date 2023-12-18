@@ -109,3 +109,13 @@ export const updateTask = mutation({
         return docs[0];
     }
 })
+export const readById =query({
+    args:{id:v.optional(v.id('documents') )
+},
+    handler:async(ctx,args)=>{
+        
+        
+        var docs=await ctx.db.query('documents').filter((q) => q.eq(q.field("_id"), args.id)).collect();
+        return docs[0];
+    }
+})

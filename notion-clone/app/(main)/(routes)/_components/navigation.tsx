@@ -58,14 +58,14 @@ function Navigation() {
   }
   const onClickMenu = () => {
     setIsOpen(false);
-    sidebar.current.style.width = '240px';
+    sidebar.current.style.width = '260px';
     if(screen.width<700){
       sidebar.current.style.width= "100%"
     }
   }
   return (
     <>
-      <aside ref={sidebar} className="group/sidebar dark:bg-[#1f1f1f] overflow-y-auto flex flex-col  h-full bg-slate-100 group/sidebar relative transition-all delay-200 ease-in-out">
+      <aside ref={sidebar} className="group/sidebar w-[260px] dark:bg-[#2a2929] overflow-y-auto flex flex-col  h-full bg-slate-100 group/sidebar relative transition-all delay-200 ease-in-out">
         <div onClick={handleChevronClick} className="top-3 right-2 absolute group-hover/sidebar:bg-slate-300 group-hover/sidebar:text-slate-900 dark:group-hover/sidebar:text-slate-50 text-slate-500 dark:text-slate-50 dark:group-hover/sidebar:bg-slate-600 cursor-pointer">
           <ChevronsLeft />
         </div>

@@ -12,13 +12,13 @@ interface data{
     coverImage?:string
 }
 
-function CoverImg({initialData}:{initialData:data}) {
+function CoverImg({initialData,preview = true}:{initialData:data;preview:boolean}) {
     const { edgestore } = useEdgeStore();
     const doc = useMutation(api.documents.updateTask)
   return (
     <div className='h-full w-full relative'>
         {initialData?.coverImage && <img className="block object-cover h-full w-full"    src={initialData?.coverImage} alt="/default.jpg"></img>}
-        {initialData?.coverImage && <Button size='sm' className='absolute top-4 right-4' variant='outline'
+        {initialData?.coverImage && preview && <Button size='sm' className='absolute top-4 right-4' variant='outline'
         onClick={async()=>{
           if(initialData?.coverImage)
             await edgestore.publicFiles.delete({

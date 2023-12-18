@@ -4,18 +4,22 @@ import { useMutation } from "convex/react";
 import { api } from "@/convex/_generated/api";
 import { useToast } from "@/components/ui/use-toast";
 import { useUser } from "@clerk/clerk-react";
+import { useRouter } from "next/navigation";
+
 
 
 function DocumentPage() {
   const create=useMutation(api.documents.createTask)
   const {toast}=useToast();
   const {user}=useUser();
+  const router = useRouter();
   const createDoc=async()=>{
     try{
     const promise=await create({title:'untitled'});
     toast({
       title:`New Note Created`,
     })
+    router.push(`/documents/${promise}`)
   }catch(e){
     toast({
       title:`Failed to Create New Note`,

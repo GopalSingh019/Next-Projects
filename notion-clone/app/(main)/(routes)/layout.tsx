@@ -25,8 +25,8 @@ function Layout({ children }: { children: React.ReactNode }) {
     <body>
       {!isLoading && (<main className='flex h-full w-full flex-row'>
         <Navigation ></Navigation>
-        <section className="flex-1 h-full overflow-y-auto">
-        <EdgeStoreProvider>{children}</EdgeStoreProvider>
+        <section className="flex-1 dark:bg-[#1f1f1f] h-full overflow-y-auto">
+        {children}
         </section>
       </main>)}
       {/* {isLoading && <main className="flex justify-center items-center h-full w-full"><ClipLoader

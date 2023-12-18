@@ -26,8 +26,8 @@ function UserItem() {
                     </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="max-w-80 p-2 pt-4 flex flex-col gap-2">
-                    <div className="text-muted-foreground"><p>{user?.emailAddresses[0].emailAddress}</p></div>
-                    <div className=" flex w-full flex-row gap-4 bg-slate-50 items-center">
+                    <div className="text-muted-foreground pl-1"><p>{user?.emailAddresses[0].emailAddress}</p></div>
+                    <div className=" flex w-full flex-row gap-4 bg-slate-50 dark:bg-[#1f1f1f] items-center">
                         <Avatar className="h-8 w-8">
                             <AvatarImage src={user?.imageUrl} alt="GP" />
                             <AvatarFallback>CN</AvatarFallback>

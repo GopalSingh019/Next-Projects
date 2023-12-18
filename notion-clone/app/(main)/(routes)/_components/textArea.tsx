@@ -9,13 +9,13 @@ interface data{
     title:string
 }
 
-function TextArea({initialData}:{initialData:data}) {
+function TextArea({initialData,preview = true }:{initialData:data;preview:boolean}) {
   const textRef=useRef<any>(null);
   const updateDoc=useMutation(api.documents.updateTask)
     return (
-    <TextareaAutosize ref={textRef} onChange={()=>{
+    <TextareaAutosize disabled={!preview} ref={textRef} onChange={()=>{
         updateDoc({id:initialData._id,title:textRef?.current.value})
-    }} value={initialData?.title} className='text-5xl bg-transparent font-bold break-words outline-none text-[#3F3F3F] dark:text-[#CFCFCF] resi'/>
+    }} value={initialData?.title} className='pl-12 text-5xl bg-transparent font-bold break-words outline-none text-[#3F3F3F] dark:text-[#CFCFCF] resi'/>
   )
 }
 

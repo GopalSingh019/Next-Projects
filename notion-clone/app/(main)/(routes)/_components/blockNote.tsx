@@ -9,7 +9,7 @@ interface data {
     _id?: Id<"documents">,
     content?: string
 }
-function BlockNote({ initialData,onChange }: { onChange: (value: string) => void;initialData: data }) {
+function BlockNote({ initialData,onChange,preview = true }: { onChange: (value: string) => void;initialData: data;preview:boolean }) {
     
     const { edgestore } = useEdgeStore();
 
@@ -22,7 +22,7 @@ function BlockNote({ initialData,onChange }: { onChange: (value: string) => void
         return res.url;
     }
     const editor = useBlockNote({
-
+        editable:preview,
         initialContent:
         initialData?.content
                 ? JSON.parse(initialData.content)
