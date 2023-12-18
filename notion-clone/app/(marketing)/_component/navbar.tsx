@@ -14,9 +14,9 @@ function Navbar() {
   const { isLoading, isAuthenticated } = useConvexAuth();
   return (
     <div className={cn('z-50 bg-background dark:bg-[#1f1f1f] p-6 fixed top-0 w-full', scrolled && 'border-b shadow-sm')}>
-      <div className='flex justify-between'>
+      <div className='flex md:justify-between justify-end'>
         <Logo></Logo>
-        <div className='flex gap-2'>
+        <div className='flex gap-2 '>
           {isLoading && <Button disabled>
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
             
