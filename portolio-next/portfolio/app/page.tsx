@@ -1,9 +1,13 @@
-import Image from "next/image";
+import Header from './components/header'
+import Intro from './components/intro'
+import {ModeToggle} from './components/dark-mode'
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      
+    <main className="">
+      <Header></Header>
+      <Intro></Intro>
+      <div className=''><ModeToggle/></div>
     </main>
   );
 }
