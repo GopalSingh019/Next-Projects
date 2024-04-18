@@ -11,7 +11,7 @@ import { BsGithub, BsLinkedin } from 'react-icons/bs'
 function intro() {
   const url="https://avatars.githubusercontent.com/u/69750153?v=4"
   return (
-    <section className='pt-[10rem] flex flex-col items-center justify-center'>
+    <section id="intro" className='pt-[10rem] flex flex-col items-center justify-center'>
         <div className='relative'><Image src={url} alt='gs' width="154" height="153"
         className='object-fill rounded-full border-[4px] border-white'></Image>
         <motion.span className='absolute right-[10px] bottom-[10px] text-4xl'
@@ -34,8 +34,8 @@ function intro() {
         <div className='pt-[2rem] flex gap-[1rem]'>
           <Button variant="default" className='flex flex-row gap-[0.5rem]'> <span>Contact me here </span><ArrowRight className='h-[30px] w-[20px] pt-1' /></Button>
           <Button variant="outline" className='flex flex-row gap-[0.5rem]'> Download CV <HiDownload className='h-[30px] w-[20px] pt-1'/></Button>
-          <Link href='/' className='border border-slate-200 rounded-xl p-2'><BsLinkedin className='h-[25px] w-[20px]'></BsLinkedin></Link>
-          <Link href='/' className='border border-slate-200 rounded-xl p-2'><BsGithub className='h-[25px] w-[20px]'></BsGithub></Link>
+          <Link href='/' className='border text-gray-700 hover:text-gray-900 border-slate-200 rounded-xl p-2'><BsLinkedin className='h-[25px] w-[20px]'></BsLinkedin></Link>
+          <Link href='/' className='border border-slate-200 text-gray-700 hover:text-gray-900 rounded-xl p-2'><BsGithub className='h-[25px] w-[20px]'></BsGithub></Link>
         </div>
     </section>
   )
